@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
+import Button from './Button'
 
 class Item extends Component {
+
     render(){
         return (
-            <li>{this.props.item}</li>
+            <li>
+                {this.props.item}
+                <Button delete={this.props.delete} item={this.props.item}/>
+            </li>
         )
     }
 }
 
-class Todo extends Component {
-    render(){
-        return (
-            <div></div>
-        )
-    }
-}
 
-export { Item, Todo }
+export default Item
