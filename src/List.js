@@ -1,38 +1,45 @@
 import React, { Component } from 'react'
 import Item from './Item'
+import Form from './Form'
 
 class List extends Component {
     constructor(){
         super()
         this.state = {
-            todos: ["Run", "Cook", "Clean"], 
-            list: ["Dance"]
+            todos: ["Run", "Cook", "Clean"]
         }
 
-        this.deleteItem = this.deleteItem.bind(this)
     }
 
     renderItems() {
         return this.state.todos.map(item => <Item item={item} delete={this.deleteItem}/>)
     }
 
-    handleClick = () => {
-        this.setState({
-            todos: [...this.state.todos, "Cry"]
-        })
-    }
+    // handleClick = () => {
+    //     // this.setState({todos: [...this.state.todos, "Cry"]})
+    //     // this.setState({todos: [...this.state.todos, "Eat"]})
 
-    deleteItem(){
-        console.log(this)
+    //     this.setState(function(prevState){
+    //         return {
+    //             todos: [...prevState.todos, "Cry"]
+    //         }
+    // })
+    //     this.setState((prevState) => ({todos: [...prevState.todos, "Eat"]}))
+    // }
+
+    addItem = (formData) => {
+        this.setState((prevState) => ({todos: [...prevState.todos, formData.item]}))
     }
 
     render(){
-        // debugger
         return (
-            <ul>
-                <button onClick={this.handleClick}>Click me!</button>
-                {this.renderItems()}
-            </ul>
+            <>
+                <Form handleSubmit={this.addItem}/>
+                <ul>
+                    {this.renderItems()}
+                </ul>
+            </>
+
         )
     }
 }
