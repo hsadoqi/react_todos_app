@@ -8,27 +8,33 @@ class List extends Component {
         this.state = {
             todos: ["Run", "Cook", "Clean"]
         }
+        console.log("constructor")
+    }
 
+    componentDidMount(){
+        console.log("component mounted")
+        this.setState({ word: "Hello"})
     }
 
     renderItems() {
-        return this.state.todos.map(item => <Item item={item} delete={this.deleteItem}/>)
+        return this.state.todos.map(item => <Item key={item} item={item} delete={this.deleteItem}/>)
     }
 
-    // handleClick = () => {
-    //     // this.setState({todos: [...this.state.todos, "Cry"]})
-    //     // this.setState({todos: [...this.state.todos, "Eat"]})
-
-    //     this.setState(function(prevState){
-    //         return {
-    //             todos: [...prevState.todos, "Cry"]
-    //         }
-    // })
-    //     this.setState((prevState) => ({todos: [...prevState.todos, "Eat"]}))
-    // }
+    componentDidUpdate(){
+        console.log("old word", this.state.word)
+        console.log("component updated")
+        if(this.state.word === "Hello"){
+            this.setState(() => ({ word: "Bye"}))
+        }
+    }
 
     addItem = (formData) => {
         this.setState((prevState) => ({todos: [...prevState.todos, formData.item]}))
+    }
+
+    deleteItem = (item) => {
+        const newTodos = this.state.todos.filter(todo => todo !== item)
+        this.setState({todos: newTodos})
     }
 
     render(){

@@ -3,7 +3,16 @@ import Button from './Button'
 
 class Item extends Component {
 
+    // componentDidMount(){
+    //     this.timerId = setInterval(() => console.log(this.props.item, "interval"), 5000)
+    // }
+
+    // componentWillUnmount(){
+    //     clearInterval(this.timerId)
+    // }
+
     render(){
+
         return (
             <li>
                 {this.props.item}
