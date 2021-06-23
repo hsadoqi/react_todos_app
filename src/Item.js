@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from './Button'
 
-class Item extends Component {
+const Item = (props) => {
 
     // componentDidMount(){
     //     this.timerId = setInterval(() => console.log(this.props.item, "interval"), 5000)
@@ -11,15 +11,14 @@ class Item extends Component {
     //     clearInterval(this.timerId)
     // }
 
-    render(){
+    // debugger
 
-        return (
+    return (
             <li>
-                {this.props.item}
-                <Button delete={this.props.delete} item={this.props.item}/>
+                {props.item.name}
+                <Button delete={props.delete} item={props.item}/>
             </li>
         )
-    }
 }
 
 
